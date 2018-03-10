@@ -31,4 +31,19 @@ class Home extends CI_Controller {
 		$data['states'] = $states;
 		$this->load->view('home', $data);
 	}
+
+	public function addPost() {
+		$newPost = [
+			'title' => $this->input->post('title'),
+			'content' => $this->input->post('content'),
+			'date' => date('Y-m-d'),
+
+			'isDeleted' => false,
+			'idState' => $this->input->post('state'),
+			'idUser' => 1
+		];
+
+		$this->home_model->insertPost($newPost);
+		redirect(base_url('home'));
+	}
 }

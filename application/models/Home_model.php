@@ -27,5 +27,9 @@ class Home_model extends CI_Model {
 
 		return $result;
 	}
+
+	public function insertPost($newPost) {
+		$this->db->insert('post', $newPost);
+	}
 	
 }
