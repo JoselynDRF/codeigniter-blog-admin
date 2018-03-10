@@ -9,7 +9,7 @@ body {
   margin-bottom: 20px;
 }
 
-.add-post-container {
+.add-post-container, .login-form {
   background-color: #e9ecef;
   border: 1px solid #dee2e6;
   padding: 15px;
@@ -23,4 +23,12 @@ body {
 
 .mce-notification {
   display: none;
+}
+
+.button-login {
+  padding: 5px 30px;
+}
+
+.text-navbar {
+  color: white;
 }

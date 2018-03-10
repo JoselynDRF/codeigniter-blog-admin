@@ -12,7 +12,8 @@ class Home extends CI_Controller {
 	{
 		$data['title'] = 'CodeIgniter - Template'; 
 		$this->load->view('common/head', $data);
-		
+		$this->load->view('common/navBar');
+
 		$data['description'] = 'Welcome to CodeIgniter';
 
 		// Data from search form
@@ -30,6 +31,8 @@ class Home extends CI_Controller {
 		$data['posts'] = $posts;
 		$data['states'] = $states;
 		$this->load->view('home', $data);
+
+		$this->checkUserSession();
 	}
 
 	public function addPost() {
@@ -45,5 +48,16 @@ class Home extends CI_Controller {
 
 		$this->home_model->insertPost($newPost);
 		redirect(base_url('home'));
+	}
+
+	public function logout() {
+		$this->session->sess_destroy();
+		redirect(base_url());
+	}
+
+	private function checkUserSession() {
+		if (!$this->session->userdata('username')) {
+			redirect();
+		}
 	}
 }
