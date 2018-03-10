@@ -10,11 +10,9 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'CodeIgniter - Template'; 
+		$data['title'] = 'My Blog'; 
 		$this->load->view('common/head', $data);
 		$this->load->view('common/navBar');
-
-		$data['description'] = 'Welcome to CodeIgniter';
 
 		// Data from search form
 		$dataSearch = [

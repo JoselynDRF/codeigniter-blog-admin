@@ -12,11 +12,8 @@ class Login extends CI_Controller {
 	{
 		$data['title'] = 'Login'; 
 		$this->load->view('common/head', $data);
-		
-		$data['description'] = 'Login';
 		$this->load->view('common/navBar');
 		$this->load->view('login', $data);
-
 		$this->checkUserSession();
 	}
 
