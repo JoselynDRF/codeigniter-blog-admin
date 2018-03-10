@@ -17,20 +17,21 @@
 			<div class="col-lg-3 col-md-4 search-box-container">
 				<h3 class="text-center"> Search </h3>
 				<hr>
-				<form>
+
+				<form action="<?= base_url() ?>home" method="POST">
 					<div class="form-group">
 						<label for="title"> Title </label>
-						<input type="text" class="form-control" id="title">
+						<input type="text" class="form-control" name="title" id="title">
 					</div>
 					<div class="form-group">
 						<label for="date"> Date </label>
-						<input type="date" class="form-control" id="date">
+						<input type="date" class="form-control" name="date" id="date">
 					</div>
 
 					<!-- Options -->
 					<div class="form-group">
 						<label for="state"> State </label>
-						<select class="form-control" id="state">
+						<select class="form-control" name="state" id="state">
 							<option></option>
 							<?php foreach($states as $state): ?>
 								<option> <?= $state->description ?> </option>

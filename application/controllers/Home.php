@@ -15,8 +15,15 @@ class Home extends CI_Controller {
 		
 		$data['description'] = 'Welcome to CodeIgniter';
 
+		// Data from search form
+		$dataSearch = [
+			'title' => $this->input->post('title'),
+			'date' => $this->input->post('date'),
+			'state' => $this->input->post('state'),
+		];
+
 		// Load data from Model
-		$posts = $this->home_model->getPosts();
+		$posts = $this->home_model->getPosts($dataSearch);
 		$states = $this->home_model->getStates();
 		
 		// Send to View
