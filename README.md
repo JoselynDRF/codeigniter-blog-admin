@@ -1,2 +1,2 @@
-# CodeIgniter - Template
-Getting Started with CodeIgniter (PHP)
+# CodeIgniter - BlogAdmin
+Project for educational purposes (PHP and CodeIgniter).
