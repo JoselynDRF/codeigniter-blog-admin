@@ -16,10 +16,12 @@ class Home extends CI_Controller {
 		$data['description'] = 'Welcome to CodeIgniter';
 
 		// Load data from Model
-		$dataFromModel = $this->home_model->getData();
-		$data['dataFromModel'] = $dataFromModel;
-
+		$posts = $this->home_model->getPosts();
+		$states = $this->home_model->getStates();
+		
 		// Send to View
+		$data['posts'] = $posts;
+		$data['states'] = $states;
 		$this->load->view('home', $data);
 	}
 }
