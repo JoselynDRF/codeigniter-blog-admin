@@ -20,7 +20,7 @@
 					<h3 class="text-center"> Search </h3>
 					<hr>
 
-					<form action="<?= base_url() ?>home" method="POST">
+					<form id="formSearch" action="<?= base_url() ?>home/searchPosts" method="POST">
 						<div class="form-group">
 							<label for="title"> Title </label>
 							<input type="text" class="form-control" name="title" id="title">
@@ -36,7 +36,7 @@
 							<select class="form-control" name="state" id="state">
 								<option></option>
 								<?php foreach($states as $state): ?>
-									<option> <?= $state->description ?> </option>
+									<option value="<?= $state->idState ?>"> <?= $state->description ?> </option>
 								<?php endforeach; ?>
 							</select>
 						</div>
@@ -57,7 +57,7 @@
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody id="tablePosts">
 							<?php foreach($posts as $post): ?>
 								<tr>
 									<td> <?= $post->title ?> </td>

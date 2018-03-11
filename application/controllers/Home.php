@@ -14,25 +14,34 @@ class Home extends CI_Controller {
 		$this->load->view('common/head', $data);
 		$this->load->view('common/navBar');
 
-		// Data from search form
+		// Load data from Model
+		$posts = $this->home_model->getPosts();
+		$states = $this->home_model->getStates();
+		
+		// Send to View
+		$data = [
+			'posts' => $posts,
+			'states' => $states
+		];
+
+		$this->load->view('home', $data);
+		$this->checkUserSession();
+	}
+
+	// Load Posts with Ajax
+	public function searchPosts() {
 		$dataSearch = [
 			'title' => $this->input->post('title'),
 			'date' => $this->input->post('date'),
 			'state' => $this->input->post('state'),
 		];
 
-		// Load data from Model
-		$posts = $this->home_model->getPosts($dataSearch);
-		$states = $this->home_model->getStates();
-		
-		// Send to View
+		$posts = $this->home_model->getPostsSearched($dataSearch);
 		$data['posts'] = $posts;
-		$data['states'] = $states;
-		$this->load->view('home', $data);
-
-		$this->checkUserSession();
+		$this->load->view('tablePosts', $data);
 	}
 
+	// Add new Post
 	public function addPost() {
 		$newPost = [
 			'title' => $this->input->post('title'),
@@ -48,11 +57,13 @@ class Home extends CI_Controller {
 		redirect(base_url('home'));
 	}
 
+	// Logout
 	public function logout() {
 		$this->session->sess_destroy();
 		redirect(base_url());
 	}
 
+	// Check session
 	private function checkUserSession() {
 		if (!$this->session->userdata('username')) {
 			redirect();

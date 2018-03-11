@@ -3,7 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home_model extends CI_Model {
 
-	public function getPosts($dataSearch) {
+	public function getPosts() {
+		$this->db->select('idPost, title, content, date, state.description as state');
+		$this->db->from('post');
+		$this->db->join('state', 'state.idState = post.idState');
+		
+		$query = $this->db->get();
+		$result = $query->result();
+
+		return $result;
+	}
+
+	public function getPostsSearched($dataSearch) {
 		$this->db->select('idPost, title, content, date, state.description as state');
 		$this->db->from('post');
 		$this->db->join('state', 'state.idState = post.idState');
@@ -12,7 +23,7 @@ class Home_model extends CI_Model {
 		$this->db->like('date', $dataSearch['date']);
 
 		if($dataSearch['state']) {
-			$this->db->where('state.description', $dataSearch['state']);
+			$this->db->where('state.idState', $dataSearch['state']);
 		}
 
 		$query = $this->db->get();
