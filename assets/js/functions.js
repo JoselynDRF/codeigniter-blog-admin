@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  // Show Posts with Ajax
   $("#formSearch").submit(function(e) {	
     e.preventDefault();
 
@@ -25,5 +26,13 @@ $(document).ready(function() {
       }
     });
   });
-
 });
+
+// Show Preview Modal
+function showPostPreview() {
+  var titlePost = $('#titleNewPost').val();
+  var contentPost = tinymce.activeEditor.getContent();
+
+  $('#previewTitle').html(titlePost);
+  $('#previewContent').html(contentPost);
+}

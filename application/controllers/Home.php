@@ -13,6 +13,7 @@ class Home extends CI_Controller {
 		$data['title'] = 'My Blog'; 
 		$this->load->view('common/head', $data);
 		$this->load->view('common/navBar');
+		$this->load->view('common/modal');
 
 		// Load data from Model
 		$posts = $this->home_model->getPosts();
@@ -36,9 +37,9 @@ class Home extends CI_Controller {
 			'state' => $this->input->post('state'),
 		];
 
-		$posts = $this->home_model->getPostsSearched($dataSearch);
+		$posts = $this->home_model->getPosts($dataSearch);
 		$data['posts'] = $posts;
-		$this->load->view('tablePosts', $data);
+		$this->load->view('common/tablePosts', $data);
 	}
 
 	// Add new Post
